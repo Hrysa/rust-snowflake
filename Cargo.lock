@@ -1,0 +1,4 @@
+[[package]]
+name = "rust-snowflake"
+version = "0.1.0"
+
