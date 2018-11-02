@@ -76,6 +76,24 @@ impl IdWorker {
             | (self.worker_id << WORKER_ID_SHIFT)
             | self.sequence
     }
+
+    pub fn get_location(id: i64) -> (i64, i64) {
+        let mut c_id = id;
+
+        c_id >>= SEQUENCE_BITS;
+        c_id <<= 64 - WORKER_ID_BITS - DATACENTER_ID_BITS;
+        c_id >>= 64 - WORKER_ID_BITS - DATACENTER_ID_BITS;
+
+        let worker_id = c_id >> 5;
+        println!("{:b}, {:b}", c_id, worker_id);
+        c_id <<= 64 - WORKER_ID_BITS - 1;
+        let dc_id = if c_id < 0 {
+            c_id ^ (0 - std::i64::MAX - 1)
+        } else {
+            c_id
+        } >> 64 - WORKER_ID_BITS - 1;
+        (dc_id, worker_id)
+    }
 }
 
 #[cfg(test)]
@@ -83,10 +101,12 @@ mod tests {
     use super::*;
     #[test]
     fn it_works() {
-        let mut worker = IdWorker::new(20, 1);
-
+        let mut worker = IdWorker::new(31, 31);
         for _ in 0..100 {
+            let id = worker.next_id();
             println!("{:?} ", worker.next_id());
+            let (dc_id, worker_id) = IdWorker::get_location(id);
+            println!("dc: {}, worker: {}", dc_id, worker_id);
         }
     }
 }
