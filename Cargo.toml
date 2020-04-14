@@ -5,5 +5,7 @@ authors = ["val hsu <vesper.val@gmail.com>"]
 edition = "2018"
 license = "BSD-3-Clause"
 description = "rust snowflake, id generator"
+respository = "https://github.com/Hrysa/rust-snowflake"
+readme = "README.md"
 
 [dependencies]
