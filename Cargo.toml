@@ -1,7 +1,9 @@
 [package]
 name = "rust-snowflake"
 version = "0.1.0"
-authors = ["val hsu <valhsu@mokyun.com>"]
+authors = ["val hsu <vesper.val@gmail.com>"]
 edition = "2018"
+license = "BSD-3-Clause"
+description = "rust snowflake, id generator"
 
 [dependencies]
