@@ -1,11 +1,11 @@
 [package]
 name = "rust-snowflake"
-version = "0.1.2"
+version = "0.1.3"
 authors = ["val hsu <vesper.val@gmail.com>"]
 edition = "2018"
 license = "BSD-3-Clause"
 description = "rust snowflake, id generator"
-respository = "https://github.com/Hrysa/rust-snowflake"
+repository = "https://github.com/Hrysa/rust-snowflake"
 readme = "README.md"
 
 [dependencies]
